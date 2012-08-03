@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-LeaderboardFactory.redis = Redis.new(db: 15)
-
 describe LeaderboardFactory do
   let(:test_harness) {
     Class.new do

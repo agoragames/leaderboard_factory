@@ -78,4 +78,4 @@ There is a nascent and evolving set of helpers that you can access via `Player.l
 
 ## Copyright
 
-Copyright (c) 2012 Matt Wilson. See LICENSE for further details.
+Copyright (c) 2012-2013 Matt Wilson. See LICENSE for further details.

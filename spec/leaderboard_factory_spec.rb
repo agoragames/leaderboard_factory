@@ -32,6 +32,7 @@ describe LeaderboardFactory do
         options: {}
       })
     end
+
     it "creates a factory method that returns said leaderboard" do
       test_harness.class_eval do
         leaderboard 'fu_manchu', :id
@@ -40,6 +41,7 @@ describe LeaderboardFactory do
 
       instance.fu_manchu.should be_a_kind_of(Leaderboard)
     end
+
     it "uses the second parameter to namespace the leaderboard" do
       test_harness.class_eval do
         leaderboard 'fu_manchu', :id
@@ -49,6 +51,7 @@ describe LeaderboardFactory do
       leaderboard = instance.fu_manchu
       leaderboard.leaderboard_name.should == 'fu-manchu-haha'
     end
+
     it "doesn't leak the abstraction" do
       klass = Class.new do
         attr_accessor :id
@@ -59,6 +62,7 @@ describe LeaderboardFactory do
       klass.new.leaderboard_specs[:instance].keys.should include('garlic')
       test_harness.new.leaderboard_specs[:instance].should be_empty
     end
+
     it "is connected to the configured redis instance" do
       test_harness.class_eval do
         leaderboard 'fu_manchu', :id
@@ -66,6 +70,7 @@ describe LeaderboardFactory do
       redis = test_harness.new.fu_manchu.instance_variable_get(:@redis_connection)
       redis.should === LeaderboardFactory.redis
     end
+
     it "adds a convience accessor based on the singularized object name, e.g. maps_by_wins => rank_map_by_wins" do
       test_harness.class_eval do
         leaderboard 'maps_by_wins', :id
@@ -76,6 +81,7 @@ describe LeaderboardFactory do
       instance.rank_map_by_wins 'map', 3
       instance.maps_by_wins.all_members.should include({:member=>"map", :rank=>1, :score=>3.0})
     end
+
     describe "this convience accessor" do
       it "accepts an optional third parameter, which is member data" do
         test_harness.class_eval do
@@ -88,10 +94,11 @@ describe LeaderboardFactory do
         member: "map",
         rank: 1,
         score: 3.0,
-        member_data: {"event_name"=>"framulator 5000"}
+        member_data: { event_name: "framulator 5000"}.to_s
       })
       end
     end
+
     it "can be overriden in the class" do
       klass = Class.new do
         attr_accessor :id
@@ -105,6 +112,7 @@ describe LeaderboardFactory do
 
       klass.new.rank_garlic_by_weight.should == "HA! HA!"
     end
+
   end
 
   describe ".collection_leaderboard" do
@@ -117,6 +125,7 @@ describe LeaderboardFactory do
         options: {}
       })
     end
+
     it "creates a factory method that returns said leaderboard" do
       test_harness.class_eval do
         collection_leaderboard 'greatest_of_all_time'

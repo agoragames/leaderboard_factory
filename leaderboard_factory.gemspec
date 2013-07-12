@@ -8,6 +8,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Helps you define and work with a bunch of leaderboards, from, e.g. an ActiveModel object}
   gem.summary       = %q{Helps you define and work with a bunch of leaderboards, from, e.g. an ActiveModel object}
   gem.homepage      = "https://github.com/agoragames/leaderboard_factory"
+  gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

@@ -3,7 +3,7 @@ require 'spec_helper'
 module LeaderboardFactory
   describe HelperProxy do
     it "takes on parameter to initialize, the context" do
-      foo = mock
+      foo = double
       proxy = HelperProxy.new(foo)
       proxy.context.should === foo
     end

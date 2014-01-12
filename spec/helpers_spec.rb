@@ -3,7 +3,7 @@ require 'spec_helper'
 module LeaderboardFactory
   describe Helpers do
     let(:kontext) {
-      mock
+      double
     }
     let(:proxy) {
       LeaderboardFactory::HelperProxy.new(kontext)
